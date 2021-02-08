@@ -1,5 +1,4 @@
-﻿using DronesDelivery.Tests.Fixtures;
-using Xunit;
+﻿using Xunit;
 
 namespace DronesDelivery.Tests
 {

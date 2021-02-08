@@ -1,6 +1,6 @@
 ﻿using DronesDelivery.Domain;
 
-namespace DronesDelivery.Tests.Fixtures
+namespace DronesDelivery.Tests.Domain
 {
     public static class Instructions
     {
