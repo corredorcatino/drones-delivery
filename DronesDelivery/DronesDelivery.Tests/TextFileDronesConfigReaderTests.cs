@@ -3,15 +3,8 @@ using Xunit;
 
 namespace DronesDelivery.Tests
 {
-    public class TextFileDronesConfigReaderTests : IClassFixture<FirstDroneFixture>
+    public class TextFileDronesConfigReaderTests
     {
-        private readonly FirstDroneFixture _firstDroneFixture;
-
-        public TextFileDronesConfigReaderTests(FirstDroneFixture firstDroneFixture)
-        {
-            _firstDroneFixture = firstDroneFixture;
-        }
-
         [Fact]
         public void ReadConfig()
         {
@@ -22,9 +15,10 @@ namespace DronesDelivery.Tests
             var config = configReader.ReadConfig();
 
             //Assert
-            var expected = _firstDroneFixture.Config;
-
-            Assert.Equal(expected, config);
+            Assert.Contains("01", config.Keys);
+            Assert.Contains("02", config.Keys);
+            Assert.Equal(3, config["01"].Count);
+            Assert.Equal(2, config["02"].Count);
         }
     }
 }
