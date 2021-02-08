@@ -17,4 +17,13 @@
     <ProjectReference Include="..\DronesDelivery\DronesDelivery.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Input\in01.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Input\wrong.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

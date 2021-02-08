@@ -7,11 +7,11 @@ using Xunit;
 
 namespace DronesDelivery.Tests.Domain
 {
-    public class DroneTest : IClassFixture<DroneFixture>
+    public class DroneTests : IClassFixture<DroneFixture>
     {
         private readonly DroneFixture _droneFixture;
 
-        public DroneTest(DroneFixture droneFixture)
+        public DroneTests(DroneFixture droneFixture)
         {
             _droneFixture = droneFixture;
         }
@@ -58,7 +58,7 @@ namespace DronesDelivery.Tests.Domain
 
         [Theory]
         [ClassData(typeof(OutOfRangeRoutesTestData))]
-        public void Deliver_ThrowsException_WhenRouteGoesOutOfRange(Route route)
+        public void Deliver_DronIsFaulted_WhenRouteGoesOutOfRange(Route route)
         {
             //Arrange
             var drone = new Drone("01");
@@ -71,30 +71,44 @@ namespace DronesDelivery.Tests.Domain
             drone.SetRoutes(routes);
 
             //Act
-            Action act = () => drone.Deliver();
+            drone.Deliver();
 
             //Assert
-            Assert.Throws<LocationOutOfRangeException>(act);
+            Assert.True(drone.IsFaulted);
         }
 
         [Fact]
-        public void Deliver_DroneReturnsToBase_WhenThrowsException()
+        public void Deliver_DroneIsNotFaulted_WhenAllRoutesAreInRange()
+        {
+            //Arrange
+            var drone = new Drone("01");
+
+            drone.SetRoutes(_droneFixture.Routes);
+
+            //Act
+            drone.Deliver();
+
+            //Assert
+            Assert.False(drone.IsFaulted);
+        }
+
+        [Fact]
+        public void Deliver_DroneReturnsToBase_WhenIsFaulted()
         {
             //Arrange
             var drone = new Drone("01");
 
             var routes = new List<Route>
             {
-                _droneFixture.OutOfRangeRouteNorth
+                _droneFixture.OutOfRangeRoute
             };
 
             drone.SetRoutes(routes);
 
             //Act
-            Action act = () => drone.Deliver();
+            drone.Deliver();
 
             //Arrange
-            Assert.ThrowsAny<Exception>(act);
             Assert.Equal(new Location(0, 0, Orientation.North), drone.Location);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace DronesDelivery.Domain
 {
@@ -6,20 +7,13 @@ namespace DronesDelivery.Domain
     {
         public static Instruction Create(char instruction)
         {
-            switch (instruction)
+            return instruction switch
             {
-                case 'A':
-                    return new MoveForwardInstruction();
-
-                case 'I':
-                    return new TurnLeftInstruction();
-
-                case 'D':
-                    return new TurnRightInstruction();
-
-                default:
-                    throw new ArgumentException($"\"{instruction}\" no es una instrucción válida.");
-            }
+                'A' => new MoveForwardInstruction(),
+                'I' => new TurnLeftInstruction(),
+                'D' => new TurnRightInstruction(),
+                _ => throw new ArgumentException($"\"{instruction}\" no es una instrucción válida."),
+            };
         }
 
         public Location Execute(Location location)

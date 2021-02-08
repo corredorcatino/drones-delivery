@@ -13,7 +13,7 @@ namespace DronesDelivery.Tests.Domain
 
         public List<Route> Routes { get; set; }
 
-        public Route OutOfRangeRouteNorth { get; set; }
+        public Route OutOfRangeRoute { get; set; }
 
         public DroneFixture()
         {
@@ -82,7 +82,7 @@ namespace DronesDelivery.Tests.Domain
                 moveForwardInstruction
             };
 
-            OutOfRangeRouteNorth = new Route(outOfRangeRouteInstructions);
+            OutOfRangeRoute = new Route(outOfRangeRouteInstructions);
         }
     }
 }
