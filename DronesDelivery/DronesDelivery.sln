@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DronesDelivery", "DronesDelivery\DronesDelivery.csproj", "{138A2190-3E39-4BB7-92EE-E294D67682C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DronesDelivery.Tests", "DronesDelivery.Tests\DronesDelivery.Tests.csproj", "{4A785BDA-0D47-411D-B061-561D3A295A56}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{138A2190-3E39-4BB7-92EE-E294D67682C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{138A2190-3E39-4BB7-92EE-E294D67682C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{138A2190-3E39-4BB7-92EE-E294D67682C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{138A2190-3E39-4BB7-92EE-E294D67682C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A785BDA-0D47-411D-B061-561D3A295A56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A785BDA-0D47-411D-B061-561D3A295A56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A785BDA-0D47-411D-B061-561D3A295A56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A785BDA-0D47-411D-B061-561D3A295A56}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {66530F70-CFA6-4F54-9999-4B3C952B4CD7}
+	EndGlobalSection
+EndGlobal
