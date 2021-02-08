@@ -22,37 +22,24 @@ namespace DronesDelivery.Domain
             }
         }
 
-        public void Execute(Location location)
+        public Location Execute(Location location)
         {
-            switch (location.Orientation)
+            return location.Orientation switch
             {
-                case Orientation.North:
-                    ExecuteInstructionWhenFacingNorth(location);
-                    break;
-
-                case Orientation.East:
-                    ExecuteInstructionWhenFacingEast(location);
-                    break;
-
-                case Orientation.South:
-                    ExecuteInstructionWhenFacingSouth(location);
-                    break;
-
-                case Orientation.West:
-                    ExecuteInstructionWhenFacingWest(location);
-                    break;
-
-                default:
-                    throw new ArgumentException($"\"{location.Orientation}\" no es una orientación válida.");
-            }
+                Orientation.North => ExecuteInstructionWhenFacingNorth(location),
+                Orientation.East => ExecuteInstructionWhenFacingEast(location),
+                Orientation.South => ExecuteInstructionWhenFacingSouth(location),
+                Orientation.West => ExecuteInstructionWhenFacingWest(location),
+                _ => throw new ArgumentException($"\"{location.Orientation}\" no es una orientación válida."),
+            };
         }
 
-        protected abstract void ExecuteInstructionWhenFacingNorth(Location location);
+        protected abstract Location ExecuteInstructionWhenFacingNorth(Location location);
 
-        protected abstract void ExecuteInstructionWhenFacingEast(Location location);
+        protected abstract Location ExecuteInstructionWhenFacingEast(Location location);
 
-        protected abstract void ExecuteInstructionWhenFacingSouth(Location location);
+        protected abstract Location ExecuteInstructionWhenFacingSouth(Location location);
 
-        protected abstract void ExecuteInstructionWhenFacingWest(Location location);
+        protected abstract Location ExecuteInstructionWhenFacingWest(Location location);
     }
 }

@@ -2,17 +2,24 @@
 
 namespace DronesDelivery.Domain
 {
-    public class Location : IEquatable<Location>
+    public struct Location
     {
-        public int X { get; set; } = 0;
+        public int X { get; set; }
 
-        public int Y { get; set; } = 0;
+        public int Y { get; set; }
 
-        public Orientation Orientation { get; set; } = Orientation.North;
+        public Orientation Orientation { get; set; }
 
-        public bool Equals(Location other)
+        public Location(int x, int y, Orientation orientation)
         {
-            return this.X == other.X && this.Y == other.Y && this.Orientation == other.Orientation;
+            X = x;
+            Y = y;
+            Orientation = orientation;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("({0}, {1}) {2}", X, Y, Orientation.ToFriendlyString());
         }
     }
 }
