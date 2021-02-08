@@ -4,7 +4,7 @@ namespace DronesDelivery.Domain
 {
     public class Drone
     {
-        public Location Location { get; }
+        public Location Location { get; private set; }
 
         private readonly string _id;
 
@@ -14,7 +14,7 @@ namespace DronesDelivery.Domain
         {
             _id = id;
 
-            Location = new Location();
+            Location = new Location(0, 0, Orientation.North);
         }
 
         public void SetRoutes(List<Route> routes)
@@ -28,7 +28,7 @@ namespace DronesDelivery.Domain
             {
                 foreach (var instruction in route.GetInstructions())
                 {
-                    instruction.Execute(Location);
+                    Location = instruction.Execute(Location);
                 }
             }
         }
