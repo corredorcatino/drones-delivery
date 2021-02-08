@@ -24,23 +24,14 @@ namespace DronesDelivery.Domain
 
         public Location Execute(Location location)
         {
-            switch (location.Orientation)
+            return location.Orientation switch
             {
-                case Orientation.North:
-                    return ExecuteInstructionWhenFacingNorth(location);
-
-                case Orientation.East:
-                    return ExecuteInstructionWhenFacingEast(location);
-
-                case Orientation.South:
-                    return ExecuteInstructionWhenFacingSouth(location);
-
-                case Orientation.West:
-                    return ExecuteInstructionWhenFacingWest(location);
-
-                default:
-                    throw new ArgumentException($"\"{location.Orientation}\" no es una orientación válida.");
-            }
+                Orientation.North => ExecuteInstructionWhenFacingNorth(location),
+                Orientation.East => ExecuteInstructionWhenFacingEast(location),
+                Orientation.South => ExecuteInstructionWhenFacingSouth(location),
+                Orientation.West => ExecuteInstructionWhenFacingWest(location),
+                _ => throw new ArgumentException($"\"{location.Orientation}\" no es una orientación válida."),
+            };
         }
 
         protected abstract Location ExecuteInstructionWhenFacingNorth(Location location);

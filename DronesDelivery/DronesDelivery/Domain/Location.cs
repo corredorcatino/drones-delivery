@@ -19,7 +19,7 @@ namespace DronesDelivery.Domain
 
         public override string ToString()
         {
-            return string.Format("{{X = {0}, Y = {1}, Orientation = {2}}}", X, Y, Orientation);
+            return string.Format("({0}, {1}) {2}", X, Y, Orientation.ToFriendlyString());
         }
     }
 }

@@ -13,6 +13,8 @@ namespace DronesDelivery.Tests.Domain
 
         public List<Route> Routes { get; set; }
 
+        public Route OutOfRangeRouteNorth { get; set; }
+
         public DroneFixture()
         {
             var moveForwardInstruction = Instruction.Create('A');
@@ -64,6 +66,23 @@ namespace DronesDelivery.Tests.Domain
                 secondRoute,
                 thirdRoute
             };
+
+            var outOfRangeRouteInstructions = new List<Instruction>
+            {
+                moveForwardInstruction,
+                moveForwardInstruction,
+                moveForwardInstruction,
+                moveForwardInstruction,
+                moveForwardInstruction,
+                moveForwardInstruction,
+                moveForwardInstruction,
+                moveForwardInstruction,
+                moveForwardInstruction,
+                moveForwardInstruction,
+                moveForwardInstruction
+            };
+
+            OutOfRangeRouteNorth = new Route(outOfRangeRouteInstructions);
         }
     }
 }
