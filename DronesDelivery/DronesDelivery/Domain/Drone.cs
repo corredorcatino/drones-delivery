@@ -26,6 +26,10 @@ namespace DronesDelivery.Domain
             get { return _deliveryLocations.Select(dl => dl).ToList(); }
         }
 
+        public bool IsFaulted { get; private set; }
+
+        public string ErrorMessage { get; private set; }
+
         public Drone(string id)
         {
             Id = id;
@@ -54,10 +58,17 @@ namespace DronesDelivery.Domain
                     foreach (var instruction in route.GetInstructions())
                     {
                         Location = instruction.Execute(Location);
+
+                        //Console.WriteLine($"Drone {Id}: {Location}");
                     }
 
                     MakeDelivery();
                 }
+            }
+            catch (Exception ex)
+            {
+                IsFaulted = true;
+                ErrorMessage = ex.Message;
             }
             finally
             {

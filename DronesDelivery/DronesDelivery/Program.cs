@@ -1,12 +1,14 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 
 namespace DronesDelivery
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var orchestrator = new DronesOrchestrator();
+
+            await orchestrator.Run();
         }
     }
 }

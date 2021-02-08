@@ -11,34 +11,30 @@ namespace DronesDelivery.Tests.Domain
 
         public OutOfRangeRoutesTestData()
         {
-            var moveForwardInstruction = Instruction.Create('A');
-            var turnLeftInstruction = Instruction.Create('I');
-            var turnRightInstruction = Instruction.Create('D');
-
             var outOfRangeInstructions = new List<Instruction>
             {
-                moveForwardInstruction,
-                moveForwardInstruction,
-                moveForwardInstruction,
-                moveForwardInstruction,
-                moveForwardInstruction,
-                moveForwardInstruction,
-                moveForwardInstruction,
-                moveForwardInstruction,
-                moveForwardInstruction,
-                moveForwardInstruction,
-                moveForwardInstruction
+                Instructions.MoveForward,
+                Instructions.MoveForward,
+                Instructions.MoveForward,
+                Instructions.MoveForward,
+                Instructions.MoveForward,
+                Instructions.MoveForward,
+                Instructions.MoveForward,
+                Instructions.MoveForward,
+                Instructions.MoveForward,
+                Instructions.MoveForward,
+                Instructions.MoveForward
             };
 
             var outOfRangeInstructionsNorth = outOfRangeInstructions.Select(i => i).ToList();
 
-            var outOfRangeInstructionsWest = new List<Instruction> { turnLeftInstruction };
+            var outOfRangeInstructionsWest = new List<Instruction> { Instructions.TurnLeft };
             outOfRangeInstructionsWest.AddRange(outOfRangeInstructions.Select(i => i));
 
-            var outOfRangeInstructionsEast = new List<Instruction> { turnRightInstruction };
+            var outOfRangeInstructionsEast = new List<Instruction> { Instructions.TurnRight };
             outOfRangeInstructionsEast.AddRange(outOfRangeInstructions.Select(i => i));
 
-            var outOfRangeInstructionsSouth = new List<Instruction> { turnRightInstruction, turnRightInstruction };
+            var outOfRangeInstructionsSouth = new List<Instruction> { Instructions.TurnRight, Instructions.TurnRight };
             outOfRangeInstructionsSouth.AddRange(outOfRangeInstructions.Select(i => i));
 
             OutOfRangeRoutes = new List<Route>
