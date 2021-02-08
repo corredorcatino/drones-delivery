@@ -4,28 +4,24 @@ using Xunit;
 
 namespace DronesDelivery.Tests.Domain
 {
-    public class DroneTest
+    public class DroneTest : IClassFixture<DroneFixture>
     {
+        private readonly DroneFixture _droneFixture;
+
+        public DroneTest(DroneFixture droneFixture)
+        {
+            _droneFixture = droneFixture;
+        }
+
         [Fact]
         public void CanFly()
         {
             //Arrange
             var drone = new Drone("01");
 
-            var instructions = new List<Instruction>
-            {
-                Instruction.Create('A'),
-                Instruction.Create('A'),
-                Instruction.Create('A'),
-                Instruction.Create('A'),
-                Instruction.Create('I'),
-                Instruction.Create('A'),
-                Instruction.Create('A')
-            };
-
             var routes = new List<Route>
             {
-                new Route(instructions)
+                _droneFixture.Route
             };
 
             drone.SetRoutes(routes);
@@ -34,7 +30,22 @@ namespace DronesDelivery.Tests.Domain
             drone.Fly();
 
             //Assert
-            Assert.Equal(drone.Location, new Location() { X = -2, Y = 4, Orientation = Orientation.West });
+            Assert.Equal(drone.Location, new Location(-2, 4, Orientation.West));
+        }
+
+        [Fact]
+        public void CanFlyMultipleRoutes()
+        {
+            //Arrange
+            var drone = new Drone("01");
+
+            drone.SetRoutes(_droneFixture.Routes);
+
+            //Act
+            drone.Fly();
+
+            //Assert
+            Assert.Equal(drone.Location, new Location(0, 0, Orientation.West));
         }
     }
 }
